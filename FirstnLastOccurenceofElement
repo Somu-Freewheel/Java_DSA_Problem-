@@ -1,0 +1,36 @@
+//To find the first and last occurence of an element using binary search method.
+
+import java.util.*;
+public class Main
+{
+    static int firstLastOccurence(int[] arr,int target,boolean isFirst){
+        int s=0;
+        int e=arr.length-1;
+        int result=-1;
+        while(s<=e){
+            int mid = s + (e-s)/2;
+            if(target ==arr[mid]){
+               result= mid;
+                if(isFirst){
+                    e=mid-1; //look for the left
+                }else{
+                    s=mid+1; // look for the right
+                }
+            }else if(target<arr[mid]){
+                e=mid-1;
+            }else{
+                s=mid+1;
+            }
+        }
+        return result;
+    }
+	public static void main(String[] args) {
+	    int[] arr ={2,5,5,5,5,6,8,9,10};
+	    int key = 5;
+	    int firstele= arr[0];
+	    int lastele =arr.length-1;
+	    int firstOccurence =firstLastOccurence(arr,key,true);
+	    int lastOccurance=firstLastOccurence(arr,key,false);
+		System.out.println("First and last occurence is "+firstOccurence+" and "+lastOccurance);
+	}
+}
